@@ -1,50 +1,80 @@
 import React, { useState } from "react";
 
+export default function Calculator() {
+  const [result, setResult] = useState("");
 
-export default function Calculator(){
+  const handleButtonClick = (event) => {
+    const value = event.target.value;
 
-  const [display,setDisplay] = useState(onDisplay);
-  const [numInput, setNumInput]= useState("")
+    if (value === "C") {
+      setResult("");
+    } else if (value === "=") {
+      try {
+        setResult(eval(result) || "");
+      } catch (error) {
+        setResult("Error");
+      }
+    } else {
+      setResult(result + value);
+    }
+  };
 
-  function inputOperation(event){
-  const values = event.target.value;
-    setNumInput(values);
-   }
-
-  
-
-  return(
-    <>
+  return (
     <div>
-      {numInput}
+      <input type="text" value={result} />
+      <br />
+      <button value="1" onClick={handleButtonClick}>
+        1
+      </button>
+      <button value="2" onClick={handleButtonClick}>
+        2
+      </button>
+      <button value="3" onClick={handleButtonClick}>
+        3
+      </button>
+      <button value="+" onClick={handleButtonClick}>
+        +
+      </button>
+      <br />
+      <button value="4" onClick={handleButtonClick}>
+        4
+      </button>
+      <button value="5" onClick={handleButtonClick}>
+        5
+      </button>
+      <button value="6" onClick={handleButtonClick}>
+        6
+      </button>
+      <button value="-" onClick={handleButtonClick}>
+        -
+      </button>
+      <br />
+      <button value="7" onClick={handleButtonClick}>
+        7
+      </button>
+      <button value="8" onClick={handleButtonClick}>
+        8
+      </button>
+      <button value="9" onClick={handleButtonClick}>
+        9
+      </button>
+      <button value="*" onClick={handleButtonClick}>
+        *
+      </button>
+      <br />
+      <button value="C" onClick={handleButtonClick}>
+        C
+      </button>
+      <button value="0" onClick={handleButtonClick}>
+        0
+      </button>
+      <button value="=" onClick={handleButtonClick}>
+        =
+      </button>
+      <button value="/" onClick={handleButtonClick}>
+        /
+      </button>
+      <br />
     </div>
-    <div>
-            <div>
-            <button onClick={inputOperation} value={"0"} className="btn-0">0</button>
-            <button onClick={inputOperation} value={"1"} className="btn-0">1</button>
-            <button onClick={inputOperation} value={"2"} className="btn-0">2</button>
-            <button onClick={inputOperation} value={"3"} className="btn-0">3</button>
-            <button onClick={inputOperation} value={"4"} className="btn-0">4</button>
-            <button onClick={inputOperation} value={"5"} className="btn-0">5</button>
-            <button onClick={inputOperation} value={"6"} className="btn-0">6</button>
-            <button onClick={inputOperation} value={"7"} className="btn-0">7</button>
-            <button onClick={inputOperation} value={"8"} className="btn-0">8</button>
-            <button onClick={inputOperation} value={"9"} className="btn-0">9</button>
-            </div> 
-            <div>
-            <button onClick={inputOperation} value={"+"} className="btn-plus">+</button>
-            <button onClick={inputOperation} value={"-"} className="btn-minus">-</button>
-            <button onClick={inputOperation} value={"*"} className="btn-multi">*</button>
-            <button onClick={inputOperation} value={"/"} className="btn-div">/</button>
-            </div> 
-            <div>
-            <button value={"="} className="btn-eql">=</button>
-            </div> 
-        </div>
-    
-    </>
-  )
-
+  );
 }
-
-let onDisplay = "0";
